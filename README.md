@@ -10,77 +10,77 @@
 
 - lib/input/index.vue 文件
 
-		<template>
-		  <div id="app">
-		  姓名：<input
-		  v-model="inputValue"
-		  type="text"
-		  @change="changeValue" >
-		  </div>
-		  </template>
-		  <script>
-		  export default {
-		  name: 'libInput',
-		  props: {
-		  inputVal: {
-		  type: String,
-		  default: ''
-		  }
-		  },
-		  data () {
-		  return {
-		  inputValue: this.inputVal
-		  }
-		  },
-		  methods: {
-		  changeValue () {
-		  this.\$emit('changeValue', this.inputValue);
-		  }
-		  }
-		  }
-		  </script>
+  		<template>
+  		  <div id="app">
+  		  姓名：<input
+  		  v-model="inputValue"
+  		  type="text"
+  		  @change="changeValue" >
+  		  </div>
+  		  </template>
+  		  <script>
+  		  export default {
+  		  name: 'libInput',
+  		  props: {
+  		  inputVal: {
+  		  type: String,
+  		  default: ''
+  		  }
+  		  },
+  		  data () {
+  		  return {
+  		  inputValue: this.inputVal
+  		  }
+  		  },
+  		  methods: {
+  		  changeValue () {
+  		  this.\$emit('changeValue', this.inputValue);
+  		  }
+  		  }
+  		  }
+  		  </script>
 
 - lib/index.js 文件
 
-  		import libInput from "./input"
-  		export default libInput
+      	import libInput from "./input"
+      	export default libInput
 
 * Modify package.json [packaged file path]
 
-  		{
-  		  "name": "libinput",
-  		  "description": "lib input plugin",
-  		  "version": "3.2.2",
-  		  "author": "刘慧涛 <liuht@mti-sh.cn>",
-  		  "license": "MIT",
-  		  "private": false,
-  		  "main": "dist/libinput.min.js",  //必须添加内容
-  		  "scripts": {
-  		    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-  		    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
-  		  },
-  		  ...
-  		}
+      	{
+      	  "name": "libinput",
+      	  "description": "lib input plugin",
+      	  "version": "3.2.2",
+      	  "author": "刘慧涛 <liuht@mti-sh.cn>",
+      	  "license": "MIT",
+      	  "private": false,
+      	  "main": "dist/libinput.min.js",  //必须添加内容
+      	  "scripts": {
+      	    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+      	    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+      	  },
+      	  ...
+      	}
 
 * Modify webpack.config.js ['lib/index.js'：export publish component]
 
-      		var path = require("path")
-      		var webpack = require("webpack")
+  		var path = require("path")
+  		var webpack = require("webpack")
 
-      		module.exports = {
-      		  entry: "./src/lib/index.js",
-      		  // entry: "./src/main.js",
-      		  output: {
-      		    path: path.resolve(__dirname, "./dist"),
-      		    publicPath: "/dist/",
-      		    filename: "libinput.min.js",
-      		    // library: "libinput", // library指定的就是你使用require时的模块名，这里便是require("toastPanel")
-      		    libraryTarget: "umd", //libraryTarget会生成不同umd的代码,可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的。
-      		    umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
-      		  },
-      		  // 这里我们可以剔除掉一些通用包,自己的包不打包这些类库,需要用户环境来提供
-      		 ...
-      		}
+  		module.exports = {
+  		  entry: "./src/lib/index.js",
+  		  // entry: "./src/main.js",
+  		  output: {
+  		    path: path.resolve(__dirname, "./dist"),
+  		    publicPath: "/dist/",
+  		    filename: "libinput.min.js",
+  		    // library: "libinput", // library指定的就是你使用require时的模块名，这里便是require("toastPanel")
+  		    libraryTarget: "umd", //libraryTarget会生成不同umd的代码,可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的。
+  		    umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
+  		  },
+  		  // 这里我们可以剔除掉一些通用包,自己的包不打包这些类库,需要用户环境来提供
+  		 ...
+  		}
 
 > Publish package
 
@@ -122,23 +122,22 @@
     }
     </script>
 
->注：发布包前修改 .gitignore 文件
+> 注：发布包前修改 .gitignore 文件
 
-	.*
-	.DS_Store
-	node_modules/
-	dist/
-	npm-debug.log
-	yarn-error.log
-	package-lock.json
-	webpack.config.js
-	index.html
-	src/
-	
-	# Editor directories and files
-	.idea
-	*.suo
-	*.ntvs*
-	*.njsproj
-	*.sln
+    .*
+    .DS_Store
+    node_modules/
+    dist/
+    npm-debug.log
+    yarn-error.log
+    package-lock.json
+    webpack.config.js
+    index.html
+    src/
 
+    # Editor directories and files
+    .idea
+    *.suo
+    *.ntvs*
+    *.njsproj
+    *.sln
